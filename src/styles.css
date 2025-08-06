@@ -161,6 +161,76 @@ h2 {
   margin-top: 30px;
 }
 
+/* Drag and Drop Styles */
+.drag-drop-instruction {
+  text-align: center;
+  color: #7f8c8d;
+  font-style: italic;
+  margin-bottom: 10px;
+  transition: color 0.3s;
+}
+
+.instruction-separator {
+  display: inline-block;
+  margin: 0 10px;
+  color: #bdc3c7;
+  font-weight: bold;
+}
+
+.shift-active {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.shift-indicator {
+  color: #e74c3c;
+  font-weight: bold;
+  background-color: rgba(231, 76, 60, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(231, 76, 60, 0.3);
+}
+
+.draggable {
+  cursor: grab;
+}
+
+.being-dragged {
+  opacity: 0.6;
+  cursor: grabbing;
+  transform: scale(0.95);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.drag-over {
+  border: 2px dashed #3498db;
+  background-color: rgba(52, 152, 219, 0.1);
+  transform: scale(1.05);
+  transition: all 0.2s;
+}
+
+.shift-pressed .drag-over {
+  border: 2px dashed #e74c3c;
+  background-color: rgba(231, 76, 60, 0.1);
+}
+
+.shift-pressed .dealer-tag {
+  background-color: #9b59b6;
+  animation: pulse 1s infinite;
+}
+
+.shift-pressed .dealer-seat {
+  box-shadow: 0 0 10px #e74c3c;
+  border-color: #e74c3c;
+  transition: all 0.3s;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
 .poker-table {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -187,8 +257,10 @@ h2 {
 .table-rectangle {
   grid-column: 2 / 5;
   grid-row: 2 / 4;
-  background-color: #27ae60;
-  border: 8px solid #2c3e50;
+  background-image: url('../poker-table-pattern.svg');
+  background-repeat: repeat;
+  background-size: 100px;
+  border: 25px solid #000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -237,6 +309,29 @@ h2 {
   border-radius: 4px;
   margin: 5px 0;
   color: #2c3e50;
+}
+
+.player-name-edit {
+  margin: 5px 0;
+  width: 100%;
+}
+
+.name-input {
+  width: 100%;
+  padding: 4px 8px;
+  border: 2px solid #3498db;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #2c3e50;
+  background-color: white;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+.editing {
+  border: 2px solid #3498db !important;
+  box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+  background-color: rgba(52, 152, 219, 0.05);
 }
 
 .dealer-tag {
@@ -343,6 +438,105 @@ input:checked + .slider:before {
 .switch-label {
   font-weight: bold;
   cursor: pointer;
+}
+
+/* Fullscreen Mode Styles */
+.fullscreen-mode {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f5f5f5;
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.fullscreen-mode .poker-table-container {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.fullscreen-mode .poker-table {
+  flex: 1;
+  width: 100%;
+  max-width: none;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto minmax(120px, auto) minmax(120px, auto) auto;
+  gap: 10px;
+}
+
+.fullscreen-mode .table-rectangle {
+  height: 100%;
+  width: 100%;
+  background-image: url('../poker-table-pattern.svg');
+  background-repeat: repeat;
+  background-size: 100px;
+  box-sizing: border-box;
+  border-width: 45px;
+}
+
+.fullscreen-mode .seat {
+  min-width: 150px;
+  max-width: 200px;
+  height: 130px;
+  padding: 15px;
+}
+
+.fullscreen-mode .seat-number {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.fullscreen-mode .player-name {
+  font-size: 24px;
+  padding: 6px 10px;
+  margin: 8px 0;
+  background-color: rgba(52, 152, 219, 0.15);
+}
+
+.fullscreen-mode .dealer-tag {
+  font-size: 18px;
+  padding: 4px 10px;
+  margin-top: 8px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.fullscreen-mode .seating-legend {
+  margin-top: 30px;
+}
+
+/* Make seats non-interactable in fullscreen mode */
+.fullscreen-mode .seat {
+  pointer-events: none;
+  cursor: default;
+}
+
+/* Style the fullscreen buttons */
+.fullscreen-btn {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.exit-fullscreen-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2100;
+  padding: 10px 20px;
+  font-size: 16px;
 }
 
 /* Modal Styles */

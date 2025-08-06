@@ -19,7 +19,10 @@ export default {
       </div>
 
       <div v-else>
-        <PokerTable :seating="seating" />
+        <PokerTable 
+          :seating="seating" 
+          @update-seating="updateSeating" 
+        />
         <div class="mt-3">
           <button @click="editPlayers" class="btn btn-secondary me-2">Edit Players</button>
           <button @click="showResetModal" class="btn btn-primary">Start Over</button>
@@ -184,6 +187,14 @@ export default {
         this.players = JSON.parse(JSON.stringify(this.originalPlayers));
         localStorage.setItem('pokerPlayers', JSON.stringify(this.players));
       }
+    },
+
+    updateSeating(newSeating) {
+      // Update the seating arrangement
+      this.seating = newSeating;
+
+      // Save to localStorage
+      localStorage.setItem('pokerSeating', JSON.stringify(newSeating));
     }
   },
   beforeMount() {

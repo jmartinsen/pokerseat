@@ -108,3 +108,74 @@ Make the player names more visible on the seating.
 Make the entire app mobile first. The design should look the same on both mobile and desktop. Maybe consider just using a max width on the top container.
 
 ---
+
+Add possibility to switch player seats by dragging one player and dropping it over another. 
+
+---
+
+When drag-and-drop switching players, the two dealer seats must be locked in place. So if a regular player is switching seats with a dealer, the regular player becomes dealer and the dealer becomes a regular player. But also add the option of holding down the SHIFT key while drag-and-drop in order to also switch the dealer position, like it currently is.
+
+---
+
+While holding down SHIFT while switching players, give some visual feedback that the dealer position is also changing.
+
+---
+
+Add option to double click a player seat to change that name in-place.
+
+And add option to double click a player seat while holding SHIFT in order to make that seat the first seat (seat #1). Then all the other seat # rearranged so they are in a sequential order.
+
+---
+
+Fix this error:
+TypeError: handleDoubleClick is not a function
+at onDblclick (eval at ur (vue.esm-browser.prod.js:12:318), <anonymous>:180:36)
+at t1 (vue.esm-browser.prod.js:5:21549)
+at t2 (vue.esm-browser.prod.js:5:21617)
+at HTMLDivElement.n (vue.esm-browser.prod.js:6:64495)
+
+---
+
+Allow for exiting in-line editing of names by pressing the escape button or by clicking outside of the seat being edited.
+
+---
+
+Add a fullscreen mode. When activated only the poker table and the seats must be displayed. And it must fill the entire screen. Nothing should be interactable in the fullscreen state, except the exit fullscreen button.
+
+---
+
+In fullscreen mode the seats are too far away from the poker table.
+
+---
+
+The problem is not the gap. It is this css:
+
+.table-rectangle {
+height: 450px;
+}
+
+The poker table needs to fill the entire grid cells.
+
+---
+
+Make the seats and player names bigger in fullscreen mode.
+
+---
+
+Remove the "Poker Table" text in the middle of the poker table. And change the poker table background from green to silver.
+
+---
+
+Change the poker table background from silver to a pattern created from this file: 250806135337.png
+
+---
+
+Generate a new png image to be used as a pattern based on the pattern seen in 250806135337.png. The pattern must be able to seamlessly repeat itself. Use this new pattern image as the poker table background.
+
+---
+
+Make the black poker table border 4-5 times wider.
+
+---
+
+Add option to exit fullscreen mode with the escape button.
